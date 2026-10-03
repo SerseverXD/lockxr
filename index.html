@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Lockxr Premium</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    *{box-sizing:border-box}
+    body{
+      margin:0;background:#09090b;color:#f4f4f5;font-family:Poppins,system-ui,sans-serif;
+      min-height:100vh;
+    }
+    .top{
+      height:88px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 28px;border-bottom:1px solid #26262b;background:#0a0a0c;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;text-decoration:none;color:#fff}
+    .brand img, .brand-emoji{width:34px;height:34px;object-fit:contain;vertical-align:middle}
+    .nav{display:flex;align-items:center;gap:18px}
+    .signin{color:#a1a1aa;font-weight:600;cursor:pointer;text-decoration:none}
+    .signin:hover{color:#fff}
+    .premium{
+      border:1px solid #34343a;border-radius:30px;padding:11px 18px;
+      background:#111115;display:flex;gap:10px;align-items:center;font-weight:700
+    }
+    .badge{background:#48a7ff;color:#fff;padding:8px 14px;border-radius:20px;font-size:13px}
+    main{max-width:760px;margin:0 auto;padding:60px 24px 50px;text-align:center}
+    .eyebrow{display:flex;justify-content:center;align-items:center;gap:10px;color:#c9c9ce;font-weight:700}
+    .eyebrow img, .eyebrow-emoji{width:30px;height:30px;object-fit:contain;vertical-align:middle}
+    h1{font-size:52px;line-height:1.16;margin:30px 0 40px;letter-spacing:-2px}
+    .lead{font-size:20px;line-height:1.8;color:#92929b;margin:0 auto 50px;max-width:690px}
+    .lead strong{color:#bfc0c6}
+    
+    .card{
+      text-align:left;border:1px solid #1f1f25;border-radius:25px;overflow:hidden;
+      background:linear-gradient(145deg,#171319,#09090b 55%);
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      margin-bottom: 32px;
+    }
+    .card-title{padding:24px 32px;border-bottom:1px solid #2a252d;font-size:22px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+    .sale{padding:36px 42px}
+    .sale h2{margin:0;font-size:30px;line-height:1.35}
+    .sale h2 span{color:#24c7ff}
+    .count{display:flex;gap:24px;margin:22px 0 36px}
+    .count div{font-size:26px;font-weight:700}
+    .count small{display:block;color:#9999a1;font-size:14px;font-weight:500}
+    
+    .plan{
+      position:relative;border:2px solid #45a9ff;border-radius:18px;padding:24px 24px;
+      background:linear-gradient(110deg,rgba(50,145,225,.18),rgba(31,58,83,.55));
+      margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;
+      gap:20px; cursor:pointer; transition: all 0.2s ease;
+    }
+    .plan:hover { transform: translateY(-2px); }
+    .tag{
+      position:absolute;top:-13px;left:24px;background:#49a9ff;color:white;
+      padding:5px 12px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.6px
+    }
+    .plan-name{font-size:21px;font-weight:500}
+    .sub{color:#55aaff;margin-top:8px;font-size:14px}
+    .price{font-size:42px;font-weight:700;white-space:nowrap}
+    .price sup{font-size:22px}
+    .price small{font-size:14px;color:#bbb;font-weight:600}
+    
+    .plan.alt{border:2px solid #222;background:#080808}
+    .plan.alt .sub{color:#777}
+    
+    .checkout-btn, .action-btn {
+      width: 100%; margin-top: 10px; padding: 18px; border-radius: 16px;
+      background: #48a7ff; color: #fff; font-size: 17px; font-weight: 700;
+      border: none; cursor: pointer; transition: background 0.2s ease;
+      font-family: inherit;
+    }
+    .checkout-btn:hover, .action-btn:hover { background: #3291e1; }
+
+    .card-body { padding: 32px; }
+    .card-desc { color: #92929b; font-size: 15px; margin: 0 0 20px; line-height: 1.6; }
+    .form-group { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+    .form-row { display: flex; gap: 12px; }
+    
+    .key-input, .select-input, .text-input {
+      width: 100%; background: #111115; border: 1px solid #2e2e36;
+      border-radius: 14px; padding: 16px 20px; color: #ffffff;
+      font-family: Poppins, sans-serif; font-size: 15px;
+      outline: none; transition: border-color 0.2s ease;
+    }
+    .key-input { font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+    .key-input:focus, .select-input:focus, .text-input:focus { border-color: #48a7ff; }
+    
+    .restore-btn {
+      background: #1e1e24; color: #fff; border: 1px solid #34343e;
+      border-radius: 14px; padding: 16px 28px; font-weight: 600;
+      font-size: 15px; font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .restore-btn:hover { background: #2a2a33; border-color: #48a7ff; }
+    
+    .status-msg { margin-top: 14px; font-size: 14px; font-weight: 500; display: none; }
+    .status-msg.success { display: block; color: #4ade80; }
+    .status-msg.error { display: block; color: #f87171; }
+
+    /* Affiliate Tracking Banner */
+    .affiliate-banner {
+      background: rgba(72, 167, 255, 0.1); border: 1px dashed #48a7ff;
+      border-radius: 16px; padding: 14px 20px; margin-bottom: 24px;
+      font-size: 14px; color: #24c7ff; text-align: center; display: none;
+    }
+
+    /* Active Keys List */
+    .active-key-item {
+      background: #111115; border: 1px solid #2e2e36; border-radius: 16px;
+      padding: 20px; margin-bottom: 12px; display: flex;
+      justify-content: space-between; align-items: center; text-align: left;
+    }
+    .active-key-title { font-weight: 700; font-size: 16px; color: #fff; }
+    .active-key-sub { font-size: 13px; color: #92929b; margin-top: 4px; }
+    .unlock-link-btn {
+      background: #24c7ff; color: #000; font-weight: 700; padding: 10px 18px;
+      border-radius: 12px; text-decoration: none; font-size: 13px;
+    }
+
+    /* Admin Panel Styling */
+    #adminPanel { display: none; }
+    #adminLoginForm { max-width: 440px; margin: 0 auto; }
+    .generated-box {
+      background: #0d0d11; border: 1px dashed #48a7ff; border-radius: 14px;
+      padding: 18px; margin-top: 16px; font-family: monospace; font-size: 15px;
+      color: #24c7ff; text-align: left; word-break: break-all;
+    }
+
+    @media(max-width:600px){
+      .top{padding:0 16px;height:80px}.brand{font-size:0}.brand img, .brand-emoji{width:32px;height:32px}
+      .signin{display:none}.premium{padding:9px 12px}.premium .badge{padding:7px 10px}
+      main{padding:40px 18px 35px}h1{font-size:38px;margin:20px 0 30px}
+      .lead{font-size:16px;line-height:1.6;margin-bottom:35px}
+      .card-title{padding:20px;font-size:19px}.sale{padding:28px 20px}
+      .sale h2{font-size:24px}.plan{padding:20px 16px}.price{font-size:34px}
+      .sub{font-size:12px}.count{gap:14px}
+      .card-body{padding:20px}
+      .form-row{flex-direction:column}
+      .restore-btn{width:100%}
+      .active-key-item{flex-direction:column;align-items:flex-start;gap:14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="index.html" class="brand">
+      <img src="unlockxr.png" alt="Lockxr logo" class="brand-emoji" onerror="this.onerror=null; this.src='lockxr.png';">
+      <span>Lockxr</span>
+    </a>
+    <nav class="nav">
+      <a href="accounts.html" class="signin">⇥ &nbsp;Accounts</a>
+      <a href="#admin-panel" class="signin" style="font-size:13px; opacity:0.7;">⚙ Admin</a>
+      <div class="premium">
+        <img src="unlockxr.png" alt="Lockxr icon" style="width:22px;height:22px;object-fit:contain" onerror="this.onerror=null; this.src='lockxr.png';">
+        <span>Premium</span><span class="badge">70% OFF 🎉</span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Affiliate Campaign Notification -->
+    <div id="affiliateBanner" class="affiliate-banner"></div>
+
+    <div class="eyebrow">
+      <img src="unlockxr.png" alt="Lockxr emoji" class="eyebrow-emoji" onerror="this.onerror=null; this.src='lockxr.png';"> 
+      Lockxr Premium
+    </div>
+    <h1>Instant access.<br>Zero friction.</h1>
+    <p class="lead">
+      Skip delays, ads, and tasks. Lockxr Premium gives you seamless
+      <strong>access to all content</strong> delivered through the Lockxr layer.
+    </p>
+
+    <!-- Main Store View -->
+    <div id="userStoreView">
+      <!-- Active Redeemed Keys Memory Section -->
+      <section class="card" id="activeKeysSection" style="display:none;">
+        <div class="card-title">
+          <span>🔓 Your Unlocked Subscriptions</span>
+          <span style="font-size:12px; font-weight:normal; color:#4ade80;">● Active</span>
+        </div>
+        <div class="card-body" id="activeKeysList"></div>
+      </section>
+
+      <!-- Purchase Duration Options -->
+      <section class="card">
+        <div class="card-title">Choose your duration</div>
+        <div class="sale">
+          <h2>🎉 <span>Fall Sale</span><br>for New Users</h2>
+          <div class="count">
+            <div><span id="h">00</span><small>Hrs</small></div>
+            <div><span id="m">00</span><small>Mins</small></div>
+            <div><span id="s">00</span><small>Secs</small></div>
+          </div>
+
+          <div class="plan" id="plan-2days">
+            <div class="tag">MOST BOUGHT</div>
+            <div>
+              <div class="plan-name">2 Days</div>
+              <div class="sub">then $4.99/month · cancel anytime</div>
+            </div>
+            <div class="price">$0<sup>.99</sup><small>/2 days</small></div>
+          </div>
+
+          <div class="plan alt" id="plan-monthly">
+            <div>
+              <div class="plan-name">Monthly</div>
+              <div class="sub">billed every 30 days</div>
+            </div>
+            <div class="price">$4<sup>.99</sup><small>/monthly</small></div>
+          </div>
+          
+          <button class="checkout-btn" id="checkoutBtn">Continue to Payment</button>
+        </div>
+      </section>
+
+      <!-- Restore / Redeem Key Section -->
+      <section class="card">
+        <div class="card-title">Restore / Redeem Purchase</div>
+        <div class="card-body">
+          <p class="card-desc">
+            Enter your 16-character license key below to validate, redeem, and unlock your target content.
+          </p>
+          <div class="form-row">
+            <input 
+              type="text" 
+              id="restoreKey" 
+              class="key-input" 
+              placeholder="XXXX-XXXX-XXXX-XXXX" 
+              maxlength="19" 
+              autocomplete="off" 
+              spellcheck="false"
+            >
+            <button class="restore-btn" id="restoreBtn">Unlock Content</button>
+          </div>
+          <div id="restoreStatus" class="status-msg"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Protected Admin Panel View -->
+    <div id="adminPanel">
+      <!-- Admin Login Guard (Shown if not logged in) -->
+      <section class="card" id="adminLoginForm">
+        <div class="card-title">🔐 Admin Login Guard</div>
+        <div class="card-body">
+          <p class="card-desc">Authentication required to access key generator and affiliate tools.</p>
+          <div class="form-group">
+            <input type="email" id="adminEmail" class="text-input" placeholder="Admin Email">
+            <input type="password" id="adminPassword" class="text-input" placeholder="Password">
+            <button class="action-btn" id="adminLoginBtn">Login to Admin Panel</button>
+          </div>
+          <div id="adminLoginStatus" class="status-msg"></div>
+        </div>
+      </section>
+
+      <!-- Admin Generator & Affiliate Control Dashboard (Shown after Auth) -->
+      <section class="card" id="adminDashboard" style="display:none;">
+        <div class="card-title">
+          <span>🔑 Key Generator & Affiliate Manager</span>
+          <button id="adminLogoutBtn" style="background:transparent; border:none; color:#f87171; cursor:pointer; font-weight:600;">Logout</button>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">Generate access keys attached to specific target titles, custom URLs, and affiliate referral links.</p>
+          
+          <div class="form-group">
+            <label style="font-size:13px; color:#c9c9ce;">1. Unlock Target Title</label>
+            <input type="text" id="unlockTitle" class="text-input" placeholder="e.g. Fortnite VIP Script / Exclusive Hub Pass">
+
+            <label style="font-size:13px; color:#c9c9ce;">2. Destination Target Redirect URL</label>
+            <input type="url" id="targetUrl" class="text-input" placeholder="e.g. https://lockxr.org/unlocked-payload">
+
+            <div class="form-row">
+              <div style="flex:1;">
+                <label style="font-size:13px; color:#c9c9ce;">3. Subscription Duration</label>
+                <select id="keyDuration" class="select-input">
+                  <option value="2days">2 Days Access</option>
+                  <option value="monthly">Monthly Access</option>
+                  <option value="lifetime">Lifetime Access</option>
+                </select>
+              </div>
+              <div style="flex:1;">
+                <label style="font-size:13px; color:#c9c9ce;">4. Affiliate Name (Optional)</label>
+                <input type="text" id="affiliateName" class="text-input" placeholder="e.g. alex">
+              </div>
+            </div>
+
+            <button class="action-btn" id="generateKeyBtn">Generate Key & Affiliate Link</button>
+          </div>
+
+          <div id="generatedOutput" class="generated-box" style="display:none;"></div>
+          <div id="adminStatus" class="status-msg"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Firebase & Core Application Module Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    import { getDatabase, ref, get, child, set, update, increment } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCqUWfs1gbrZm0PjL1R3eHbG6DOWrT3Z0",
+      authDomain: "lockxr-e0bf7.firebaseapp.com",
+      databaseURL: "https://lockxr-e0bf7-default-rtdb.firebaseio.com",
+      projectId: "lockxr-e0bf7",
+      storageBucket: "lockxr-e0bf7.firebasestorage.app",
+      messagingSenderId: "384931061333",
+      appId: "1:384931061333:web:0d3c9c502c2deeac0f3edc",
+      measurementId: "G-18JQDH0V7Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    // Global Public API Helper for Callbacks and External Redirect Verifications
+    window.LockxrAPI = {
+      async verifyAndUnlock(keyString) {
+        const formattedKey = keyString.trim().toUpperCase();
+        const dbRef = ref(db);
+        const snapshot = await get(child(dbRef, `keys/${formattedKey}`));
+
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          if (data.active) {
+            // Callback trigger & Local Storage update
+            saveRedeemedKeyLocally(formattedKey, data);
+            
+            // Mark key as redeemed in RTDB
+            await update(ref(db, `keys/${formattedKey}`), {
+              redeemed: true,
+              lastValidated: new Date().toISOString()
+            });
+
+            // If key belongs to an affiliate, increment conversions
+            if (data.affiliate) {
+              await update(ref(db, `affiliates/${data.affiliate}`), {
+                conversions: increment(1)
+              });
+            }
+
+            return { success: true, data };
+          }
+        }
+        return { success: false, reason: 'Invalid or revoked key' };
+      }
+    };
+
+    // Routing Logic: Handles /admin-panel, #admin-panel, and /c/{name} Affiliate Links
+    function handleRouting() {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+
+      // Handle Affiliate Route: /c/{name} or #c/{name}
+      let affiliateMatch = path.match(/\/c\/([a-zA-Z0-9_-]+)/) || hash.match(/#c\/([a-zA-Z0-9_-]+)/);
+      if (affiliateMatch && affiliateMatch[1]) {
+        const affiliateName = affiliateMatch[1];
+        sessionStorage.setItem('lockxr_affiliate', affiliateName);
+        
+        // Show Affiliate Banner
+        const banner = document.getElementById('affiliateBanner');
+        banner.style.display = 'block';
+        banner.innerHTML = `🎉 You were referred by <strong>${affiliateName}</strong>! Complete checkout or redeem your key below.`;
+        
+        // Increment affiliate clicks
+        update(ref(db, `affiliates/${affiliateName}`), {
+          clicks: increment(1)
+        }).catch(() => {});
+      }
+
+      // Handle Admin Panel Login Guard Route
+      const isAdminRoute = path.includes('/admin-panel') || hash === '#admin-panel';
+      if (isAdminRoute) {
+        document.getElementById('userStoreView').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+      } else {
+        document.getElementById('userStoreView').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'none';
+      }
+    }
+
+    window.addEventListener('load', handleRouting);
+    window.addEventListener('hashchange', handleRouting);
+
+    // Admin Auth State Observer (Login Guard)
+    onAuthStateChanged(auth, (user) => {
+      const loginForm = document.getElementById('adminLoginForm');
+      const dashboard = document.getElementById('adminDashboard');
+      
+      if (user) {
+        loginForm.style.display = 'none';
+        dashboard.style.display = 'block';
+      } else {
+        loginForm.style.display = 'block';
+        dashboard.style.display = 'none';
+      }
+    });
+
+    // Admin Login Action
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminLoginStatus = document.getElementById('adminLoginStatus');
+
+    adminLoginBtn.addEventListener('click', async () => {
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        adminLoginStatus.className = 'status-msg success';
+        adminLoginStatus.textContent = 'Authenticated successfully!';
+      } catch (err) {
+        adminLoginStatus.className = 'status-msg error';
+        adminLoginStatus.textContent = 'Login failed: ' + err.message.replace('Firebase: ', '');
+      }
+    });
+
+    // Admin Logout
+    document.getElementById('adminLogoutBtn').addEventListener('click', () => signOut(auth));
+
+    // Key Generator Action
+    function generate16CharKey() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let res = '';
+      for (let i = 0; i < 16; i++) res += chars.charAt(Math.floor(Math.random() * chars.length));
+      return res.match(/.{1,4}/g).join('-');
+    }
+
+    const generateKeyBtn = document.getElementById('generateKeyBtn');
+    const generatedOutput = document.getElementById('generatedOutput');
+    const adminStatus = document.getElementById('adminStatus');
+
+    generateKeyBtn.addEventListener('click', async () => {
+      const newKey = generate16CharKey();
+      const title = document.getElementById('unlockTitle').value.trim() || 'Lockxr Premium Universal Pass';
+      const targetUrl = document.getElementById('targetUrl').value.trim() || 'https://lockxr.org/unlocked';
+      const duration = document.getElementById('keyDuration').value;
+      const affiliate = document.getElementById('affiliateName').value.trim().toLowerCase();
+
+      const affiliateLink = affiliate ? `https://lockxr.org/c/${affiliate}` : 'N/A';
+
+      try {
+        await set(ref(db, `keys/${newKey}`), {
+          active: true,
+          contentTitle: title,
+          targetUrl: targetUrl,
+          duration: duration,
+          affiliate: affiliate || null,
+          createdAt: new Date().toISOString()
+        });
+
+        if (affiliate) {
+          await update(ref(db, `affiliates/${affiliate}`), {
+            created: new Date().toISOString()
+          });
+        }
+
+        generatedOutput.style.display = 'block';
+        generatedOutput.innerHTML = `
+          <strong>KEY:</strong> ${newKey}<br>
+          <strong>UNLOCK TITLE:</strong> ${title}<br>
+          <strong>TARGET URL:</strong> ${targetUrl}<br>
+          <strong>DURATION:</strong> ${duration}<br>
+          <strong>AFFILIATE LINK:</strong> ${affiliateLink}
+        `;
+
+        adminStatus.className = 'status-msg success';
+        adminStatus.textContent = 'Key & Affiliate Metadata saved successfully!';
+      } catch (err) {
+        adminStatus.className = 'status-msg error';
+        adminStatus.textContent = 'Error generating key: ' + err.message;
+      }
+    });
+
+    // Save Active Keys to LocalStorage & Render UI
+    function saveRedeemedKeyLocally(key, keyData) {
+      let saved = JSON.parse(localStorage.getItem('lockxr_active_keys') || '{}');
+      saved[key] = {
+        title: keyData.contentTitle || 'Lockxr Premium Pass',
+        targetUrl: keyData.targetUrl || '#',
+        duration: keyData.duration,
+        unlockedAt: new Date().toISOString()
+      };
+      localStorage.setItem('lockxr_active_keys', JSON.stringify(saved));
+      renderActiveKeys();
+    }
+
+    function renderActiveKeys() {
+      const activeKeysSection = document.getElementById('activeKeysSection');
+      const activeKeysList = document.getElementById('activeKeysList');
+      const saved = JSON.parse(localStorage.getItem('lockxr_active_keys') || '{}');
+      const keysArray = Object.keys(saved);
+
+      if (keysArray.length === 0) {
+        activeKeysSection.style.display = 'none';
+        return;
+      }
+
+      activeKeysSection.style.display = 'block';
+      activeKeysList.innerHTML = keysArray.map(key => {
+        const item = saved[key];
+        return `
+          <div class="active-key-item">
+            <div>
+              <div class="active-key-title">${item.title}</div>
+              <div class="active-key-sub">Key: <code>${key}</code> · Plan: ${item.duration.toUpperCase()}</div>
+            </div>
+            <a href="${item.targetUrl}" target="_blank" class="unlock-link-btn">Access Unlocked Content ➔</a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Call on load
+    renderActiveKeys();
+
+    // Key Input Formatting (XXXX-XXXX-XXXX-XXXX)
+    const restoreKeyInput = document.getElementById('restoreKey');
+    restoreKeyInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+      if (val.length > 16) val = val.substring(0, 16);
+      const parts = val.match(/.{1,4}/g);
+      e.target.value = parts ? parts.join('-') : val;
+    });
+
+    // Restore Key Button Event
+    const restoreBtn = document.getElementById('restoreBtn');
+    const restoreStatus = document.getElementById('restoreStatus');
+
+    restoreBtn.addEventListener('click', async () => {
+      const rawKey = restoreKeyInput.value.trim();
+      if (rawKey.replace(/[^a-zA-Z0-9]/g, '').length !== 16) {
+        restoreStatus.className = 'status-msg error';
+        restoreStatus.textContent = 'Please enter a valid 16-character license key.';
+        return;
+      }
+
+      restoreStatus.className = 'status-msg';
+      restoreStatus.style.display = 'block';
+      restoreStatus.style.color = '#92929b';
+      restoreStatus.textContent = 'Verifying key against database...';
+
+      const result = await window.LockxrAPI.verifyAndUnlock(rawKey);
+
+      if (result.success) {
+        restoreStatus.className = 'status-msg success';
+        restoreStatus.textContent = `Key verified! Unlocked: "${result.data.contentTitle}". Redirecting...`;
+        
+        setTimeout(() => {
+          if (result.data.targetUrl && result.data.targetUrl !== '#') {
+            window.location.href = result.data.targetUrl;
+          }
+        }, 1200);
+      } else {
+        restoreStatus.className = 'status-msg error';
+        restoreStatus.textContent = result.reason;
+      }
+    });
+  </script>
+
+  <script>
+    // Timer Countdown
+    const end = Date.now() + 2 * 60 * 60 * 1000;
+    function tick(){
+      let n = Math.max(0, end - Date.now());
+      let h = Math.floor(n / 3600000); n %= 3600000;
+      let m = Math.floor(n / 60000); n %= 60000;
+      let s = Math.floor(n / 1000);
+      document.getElementById('h').textContent = String(h).padStart(2,'0');
+      document.getElementById('m').textContent = String(m).padStart(2,'0');
+      document.getElementById('s').textContent = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Plan Switcher
+    const plans = document.querySelectorAll('.plan');
+    let selectedPlan = 'plan-2days';
+
+    plans.forEach(plan => {
+      plan.addEventListener('click', () => {
+        plans.forEach(p => p.classList.add('alt'));
+        plan.classList.remove('alt');
+        selectedPlan = plan.id;
+      });
+    });
+
+    // SellAuth Checkout Redirect with Product ID 901590
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    checkoutBtn.addEventListener('click', () => {
+      let currentProductId = 901590;
+      let currentVariantId = 1765869; // 2 days variant ID
+      
+      if (selectedPlan === 'plan-monthly') {
+        currentProductId = 901590;
+        currentVariantId = 1765599; // Monthly variant ID
+      }
+
+      if (typeof sellAuth !== 'undefined') {
+        sellAuth.open({
+          shopId: 91082,
+          shopUrl: 'https://lockxr.mysellauth.com/',
+          cart: [{ productId: currentProductId, variantId: currentVariantId, quantity: 1 }],
+          onSuccess: ({ invoiceId }) => console.log('paid', invoiceId),
+        });
+      } else {
+        window.location.href = `https://lockxr.mysellauth.com/checkout-link?cart[0][productId]=${currentProductId}&cart[0][variantId]=${currentVariantId}&cart[0][quantity]=1`;
+      }
+    });
+  </script>
+</body>
+</html>
+
