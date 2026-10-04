@@ -33,20 +33,19 @@
     .lead{font-size:22px;line-height:1.8;color:#92929b;margin:0 auto 70px;max-width:690px}
     .lead strong{color:#bfc0c6}
 
-    /* SQUARED CORNER BOX FOR {name} */
-    .squared-box {
+    /* ROUNDED CORNER BOX FOR {name} */
+    .rounded-box {
       display: inline-block;
       border: 2px solid #48a7ff;
-      border-radius: 0px !important; /* Strictly squared corners */
-      padding: 2px 12px;
+      border-radius: 12px; /* Rounded corners */
+      padding: 4px 14px;
       background: #111118;
       color: #ffffff;
       font-weight: 700;
-      font-family: monospace;
       font-size: 0.95em;
       margin: 0 4px;
       vertical-align: middle;
-      box-shadow: 0 0 12px rgba(72,167,255,0.2);
+      box-shadow: 0 0 16px rgba(72,167,255,0.25);
     }
 
     .card{
@@ -185,7 +184,6 @@
     .badge-status { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
     .status-unredeemed { background: #1f2937; color: #9ca3af; }
     .status-active { background: #064e3b; color: #34d399; }
-    .status-expired { background: #451a1a; color: #f87171; }
 
     code.snippet-box {
       display: block; background: #0a0a0d; border: 1px solid #222228;
@@ -338,7 +336,7 @@
 
         <div class="admin-nav">
           <button class="admin-tab active" data-tab="tab-generator">Key Generator</button>
-          <button class="admin-tab" data-tab="tab-linkgen">Link Generator (lockxr.org/u/{name})</button>
+          <button class="admin-tab" data-tab="tab-linkgen">Link Generator & Manager</button>
           <button class="admin-tab" data-tab="tab-keys">Generated Keys</button>
           <button class="admin-tab" data-tab="tab-api">API Integration</button>
         </div>
@@ -372,13 +370,13 @@
           </div>
         </div>
 
-        <!-- TAB 2: LINK GENERATOR (lockxr.org/u/{name}) -->
+        <!-- TAB 2: LINK GENERATOR & REMOVER (lockxr.org/u/{name}) -->
         <div id="tab-linkgen" class="admin-tab-content card" style="display:none;">
           <div class="card-title">Custom Content Link Generator</div>
           <div class="admin-body">
             <p class="restore-desc">
-              Generate links in the format <code>lockxr.org/u/{name}</code>. When opened, the page displays:
-              <br><em>"Access to {name} immediately — skip delays, ads, and tasks..."</em> with <strong>{name}</strong> framed in a squared-corner box.
+              Generate links in the format <code>lockxr.org/u/{name}</code>. Visiting this link will display:
+              <br><em>"Access to {name} immediately — skip delays, ads, and tasks. Lockxr Premium gives you seamless access to this and all other content delivered through the Lockxr layer."</em>
             </p>
             <div class="form-group">
               <input type="text" id="linkNameInput" class="text-input" placeholder="Enter content name (e.g. HubScript-v2)">
@@ -390,6 +388,27 @@
               <code class="snippet-box" id="linkOutputBox"></code>
               <button class="sec-btn" id="copyGeneratedLinkBtn" style="margin-top:12px; width:100%;">📋 Copy Generated Link</button>
             </div>
+
+            <!-- SAVED LINKS MANAGEMENT TABLE -->
+            <hr style="border: 0; border-top: 1px solid #1f1f25; margin: 32px 0 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h3 style="margin:0; font-size:18px;">Active Generated Links</h3>
+              <button id="refreshLinksBtn" class="sec-btn" style="padding:6px 14px; font-size:12px;">🔄 Refresh</button>
+            </div>
+
+            <table class="key-table">
+              <thead>
+                <tr>
+                  <th>Content Name</th>
+                  <th>Full URL</th>
+                  <th>Created At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="linksTableBody">
+                <tr><td colspan="4" style="text-align:center; color:#888;">Loading links...</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -436,7 +455,7 @@
   <!-- AUTHENTICATION MODAL -->
   <div id="authModal" class="modal-overlay">
     <div class="auth-card">
-      <h2 class="auth-title">Access to Lockr</h2>
+      <h2 class="auth-title">Access to Lockxr</h2>
       <p class="auth-subtitle">Get access to your account or sign up for one by using a method below.</p>
 
       <div class="auth-bar">
@@ -500,7 +519,7 @@
       getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, 
       GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut 
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-    import { getDatabase, ref, get, child, update, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+    import { getDatabase, ref, get, child, update, set, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBCqUWfs1gbrZm0PjL1R3eHbG6DOWrT3Z0",
@@ -552,7 +571,7 @@
 
         if (contentName) {
           const leadElement = document.getElementById('mainLeadText');
-          leadElement.innerHTML = `Access to <span class="squared-box">${escapeHtml(contentName)}</span> immediately — skip delays, ads, and tasks. Lockr Premium gives you seamless access to this and all other content delivered through the Lockr layer.`;
+          leadElement.innerHTML = `Access to <span class="rounded-box">${escapeHtml(contentName)}</span> immediately — skip delays, ads, and tasks. Lockxr Premium gives you seamless access to this and all other content delivered through the Lockxr layer.`;
         }
       }
     }
@@ -564,13 +583,14 @@
     onAuthStateChanged(auth, async (user) => {
       const userBtn = document.getElementById('userAccountBtn');
       if (user) {
-        userBtn.textContent = `👤 ${user.email.split('@')[0]}`;
+        userBtn.textContent = `👤 ${user.email ? user.email.split('@')[0] : 'User'}`;
 
         // Verify if user is admin when accessing admin panel
         const snap = await get(child(ref(db), `admins/${user.uid}`));
         if (snap.exists() && snap.val() === true) {
           document.getElementById('adminAuthGuard').style.display = 'none';
           document.getElementById('adminContent').style.display = 'block';
+          loadLinksTable();
         } else {
           document.getElementById('adminAuthGuard').style.display = 'block';
           document.getElementById('adminContent').style.display = 'none';
@@ -788,18 +808,31 @@
         document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         document.querySelectorAll('.admin-tab-content').forEach(c => c.style.display = 'none');
-        document.getElementById(tab.getAttribute('data-tab')).style.display = 'block';
-        if (tab.getAttribute('data-tab') === 'tab-keys') loadKeysTable();
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).style.display = 'block';
+        if (tabId === 'tab-keys') loadKeysTable();
+        if (tabId === 'tab-linkgen') loadLinksTable();
       });
     });
 
-    // Link Generator Logic
-    document.getElementById('generateLinkBtn').addEventListener('click', () => {
+    // LINK GENERATOR & SAVER LOGIC
+    document.getElementById('generateLinkBtn').addEventListener('click', async () => {
       const name = document.getElementById('linkNameInput').value.trim();
       if (!name) return;
+
       const formattedUrl = `https://lockxr.org/u/${encodeURIComponent(name)}`;
+      const linkId = encodeURIComponent(name).replace(/\./g, '_');
+
+      // Save to Firebase Database
+      await set(ref(db, `links/${linkId}`), {
+        name: name,
+        url: formattedUrl,
+        createdAt: new Date().toISOString()
+      });
+
       document.getElementById('linkOutputBox').textContent = formattedUrl;
       document.getElementById('generatedLinkOutput').style.display = 'block';
+      loadLinksTable();
     });
 
     document.getElementById('copyGeneratedLinkBtn').addEventListener('click', () => {
@@ -807,6 +840,41 @@
       navigator.clipboard.writeText(linkText);
       alert('Link copied to clipboard!');
     });
+
+    // LOAD & REMOVE LINKS TABLE
+    async function loadLinksTable() {
+      const tbody = document.getElementById('linksTableBody');
+      const snap = await get(child(ref(db), 'links'));
+      if (!snap.exists()) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">No saved links found.</td></tr>';
+        return;
+      }
+      const data = snap.val();
+      tbody.innerHTML = '';
+      Object.keys(data).forEach(id => {
+        const item = data[id];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight:600; color:#fff;">${escapeHtml(item.name)}</td>
+          <td><code style="color:#38bdf8;">${escapeHtml(item.url)}</code></td>
+          <td>${item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
+          <td><button class="del-btn remove-link-btn" data-id="${id}">Remove Link</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.querySelectorAll('.remove-link-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          const id = e.target.getAttribute('data-id');
+          if (confirm('Are you sure you want to remove this link?')) {
+            await remove(ref(db, `links/${id}`));
+            loadLinksTable();
+          }
+        });
+      });
+    }
+
+    document.getElementById('refreshLinksBtn').addEventListener('click', loadLinksTable);
 
     // Key Generator
     document.getElementById('generateKeyBtn').addEventListener('click', async () => {
@@ -851,12 +919,12 @@
           <td><span class="badge-status status-${item.status || 'unredeemed'}">${item.status || 'unredeemed'}</span></td>
           <td>${item.redeemedEmail || '—'}</td>
           <td>${item.expiresAt ? new Date(item.expiresAt).toLocaleDateString() : '—'}</td>
-          <td><button class="del-btn" data-key="${k}">Delete</button></td>
+          <td><button class="del-btn key-del-btn" data-key="${k}">Delete Key</button></td>
         `;
         tbody.appendChild(tr);
       });
 
-      document.querySelectorAll('.del-btn').forEach(btn => {
+      document.querySelectorAll('.key-del-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
           if (confirm('Delete key?')) {
             await remove(ref(db, `keys/${e.target.getAttribute('data-key')}`));
@@ -865,6 +933,8 @@
         });
       });
     }
+
+    document.getElementById('refreshKeysBtn').addEventListener('click', loadKeysTable);
 
     // Code Snippet Box
     const snippetCode = `<script type="module">
