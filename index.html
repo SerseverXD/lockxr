@@ -25,116 +25,122 @@
       background:#111115;display:flex;gap:10px;align-items:center;font-weight:700
     }
     .badge{background:#48a7ff;color:#fff;padding:8px 14px;border-radius:20px;font-size:13px}
-    main{max-width:760px;margin:0 auto;padding:78px 24px 50px;text-align:center}
+    main{max-width:840px;margin:0 auto;padding:60px 24px 50px;text-align:center}
     .eyebrow{display:flex;justify-content:center;align-items:center;gap:10px;color:#c9c9ce;font-weight:700}
     .eyebrow img, .eyebrow-emoji{width:30px;height:30px;object-fit:contain;vertical-align:middle}
-    h1{font-size:58px;line-height:1.16;margin:45px 0 54px;letter-spacing:-2px}
-    h1 .highlight-name{color:#24c7ff;text-transform:capitalize}
-    .lead{font-size:22px;line-height:1.8;color:#92929b;margin:0 auto 70px;max-width:690px}
+    h1{font-size:54px;line-height:1.16;margin:30px 0 40px;letter-spacing:-2px}
+    .lead{font-size:20px;line-height:1.8;color:#92929b;margin:0 auto 50px;max-width:690px}
     .lead strong{color:#bfc0c6}
+    
     .card{
       text-align:left;border:1px solid #1f1f25;border-radius:25px;overflow:hidden;
       background:linear-gradient(145deg,#171319,#09090b 55%);
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
-      margin-bottom: 32px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35); margin-bottom: 32px;
     }
-    .card-title{
-      padding:27px 32px;border-bottom:1px solid #2a252d;font-size:25px;font-weight:700;
-      display:flex;justify-content:space-between;align-items:center;
-    }
-    .sale{padding:42px 48px 42px}
-    .sale h2{margin:0;font-size:32px;line-height:1.35}
+    .card-title{padding:24px 32px;border-bottom:1px solid #2a252d;font-size:22px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+    .sale{padding:36px 44px}
+    .sale h2{margin:0;font-size:30px;line-height:1.35}
     .sale h2 span{color:#24c7ff}
-    .count{display:flex;gap:24px;margin:26px 0 42px}
+    .count{display:flex;gap:24px;margin:24px 0 36px}
     .count div{font-size:28px;font-weight:700}
-    .count small{display:block;color:#9999a1;font-size:15px;font-weight:500}
+    .count small{display:block;color:#9999a1;font-size:14px;font-weight:500}
     
     .plan{
-      position:relative;border:2px solid #45a9ff;border-radius:18px;padding:30px 28px;
+      position:relative;border:2px solid #45a9ff;border-radius:18px;padding:26px 24px;
       background:linear-gradient(110deg,rgba(50,145,225,.18),rgba(31,58,83,.55));
-      margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;
       gap:20px; cursor:pointer; transition: all 0.2s ease;
     }
     .plan:hover { transform: translateY(-2px); }
     .tag{
-      position:absolute;top:-15px;left:24px;background:#49a9ff;color:white;
-      padding:7px 14px;border-radius:10px;font-size:12px;font-weight:700;letter-spacing:.6px
+      position:absolute;top:-13px;left:24px;background:#49a9ff;color:white;
+      padding:6px 12px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.6px
     }
-    .plan-name{font-size:23px;font-weight:500}
-    .sub{color:#55aaff;margin-top:12px;font-size:15px}
-    .price{font-size:48px;font-weight:700;white-space:nowrap}
-    .price sup{font-size:24px}
-    .price small{font-size:15px;color:#bbb;font-weight:600}
+    .plan-name{font-size:22px;font-weight:500}
+    .sub{color:#55aaff;margin-top:8px;font-size:14px}
+    .price{font-size:44px;font-weight:700;white-space:nowrap}
+    .price sup{font-size:22px}
+    .price small{font-size:14px;color:#bbb;font-weight:600}
     
     .plan.alt{border:2px solid #222;background:#080808}
     .plan.alt .sub{color:#777}
     
-    .checkout-btn, .action-btn, .secondary-btn {
-      width: 100%; padding: 18px 24px; border-radius: 16px;
-      font-size: 16px; font-weight: 700; border: none; cursor: pointer;
-      transition: all 0.2s ease; font-family: inherit; text-align: center;
+    .checkout-btn, .action-btn {
+      width: 100%; padding: 18px; border-radius: 16px;
+      background: #48a7ff; color: #fff; font-size: 17px; font-weight: 700;
+      border: none; cursor: pointer; transition: background 0.2s ease;
+      font-family: inherit; margin-top: 10px;
     }
-    .checkout-btn, .action-btn { background: #48a7ff; color: #fff; }
     .checkout-btn:hover, .action-btn:hover { background: #3291e1; }
-    .secondary-btn { background: #1e1e24; color: #fff; border: 1px solid #34343e; }
-    .secondary-btn:hover { background: #2a2a33; border-color: #48a7ff; }
 
     .restore-body, .admin-body { padding: 32px; }
     .restore-desc { color: #92929b; font-size: 15px; margin: 0 0 20px; line-height: 1.6; }
-    .form-group { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .form-group { display: flex; gap: 12px; margin-bottom: 16px; }
     
     .key-input, .select-input, .text-input {
-      flex: 1; min-width: 200px; background: #111115; border: 1px solid #2e2e36;
+      flex: 1; background: #111115; border: 1px solid #2e2e36;
       border-radius: 14px; padding: 16px 20px; color: #ffffff;
       font-family: Poppins, sans-serif; font-size: 15px;
       outline: none; transition: border-color 0.2s ease;
     }
-    .key-input { font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+    .key-input { font-family: monospace, Poppins, sans-serif; letter-spacing: 2px; text-transform: uppercase; }
     .key-input:focus, .select-input:focus, .text-input:focus { border-color: #48a7ff; }
+    
+    .restore-btn {
+      background: #1e1e24; color: #fff; border: 1px solid #34343e;
+      border-radius: 14px; padding: 16px 28px; font-weight: 600;
+      font-size: 15px; font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .restore-btn:hover { background: #2a2a33; border-color: #48a7ff; }
     
     .status-msg { margin-top: 14px; font-size: 14px; font-weight: 500; display: none; }
     .status-msg.success { display: block; color: #4ade80; }
     .status-msg.error { display: block; color: #f87171; }
 
-    /* Key Box & Output Display */
-    .generated-key-box {
-      background: #0d0d11; border: 1px dashed #48a7ff; border-radius: 14px;
-      padding: 16px; margin-top: 16px; font-family: monospace; font-size: 14px;
-      color: #24c7ff; text-align: left; max-height: 200px; overflow-y: auto;
-      white-space: pre-wrap; word-break: break-all;
-    }
+    /* Admin Views & Tabs */
+    #adminPanel, #adminAuthCard { display: none; }
+    .admin-nav { display: flex; gap: 10px; padding: 0 32px; border-bottom: 1px solid #2a252d; background: #0e0e12; }
+    .tab-btn { background: none; border: none; color: #92929b; padding: 16px 20px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; font-family: inherit; }
+    .tab-btn.active { color: #48a7ff; border-bottom-color: #48a7ff; }
+    .tab-content { display: none; padding: 32px; }
+    .tab-content.active { display: block; }
 
-    .btn-row { display: flex; gap: 12px; margin-top: 12px; }
-    .btn-row button { flex: 1; }
+    /* Table Styles */
+    .keys-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+    .keys-table th, .keys-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #1f1f25; }
+    .keys-table th { color: #92929b; font-weight: 600; background: #0c0c10; }
+    .keys-table td { font-family: monospace; }
+    .delete-btn { background: #3f1515; color: #f87171; border: 1px solid #6b2121; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .delete-btn:hover { background: #7f1d1d; color: #fff; }
 
-    /* Admin View Section */
-    #adminPanel { display: none; }
-    #adminLoginForm { display: block; }
-    #adminDashboard { display: none; }
-    .logout-link { font-size: 13px; color: #f87171; cursor: pointer; font-weight: 500; }
+    /* Code Box */
+    .code-box { background: #0d0d11; border: 1px solid #26262e; border-radius: 12px; padding: 16px; font-family: monospace; font-size: 13px; color: #24c7ff; overflow-x: auto; white-space: pre-wrap; }
+
+    /* Modal Popup */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 999; }
+    .modal-card { background: #111116; border: 1px solid #48a7ff; border-radius: 24px; padding: 40px; max-width: 480px; text-align: center; box-shadow: 0 0 50px rgba(72,167,255,0.2); }
+    .modal-card h2 { font-size: 32px; margin: 0 0 12px; color: #fff; }
+    .modal-card p { color: #a1a1aa; margin: 0 0 28px; line-height: 1.6; }
 
     @media(max-width:600px){
       .top{padding:0 16px;height:80px}.brand{font-size:0}.brand img, .brand-emoji{width:32px;height:32px}
       .signin{display:none}.premium{padding:9px 12px}.premium .badge{padding:7px 10px}
-      main{padding:58px 20px 35px}h1{font-size:42px;margin:38px 0 48px}
-      .lead{font-size:18px;line-height:1.65;margin-bottom:55px}
-      .card-title{padding:24px;font-size:20px}.sale{padding:36px 24px 36px}
-      .sale h2{font-size:27px}.plan{padding:27px 20px}.price{font-size:40px}
-      .sub{font-size:13px}.count{gap:17px}
-      .restore-body, .admin-body{padding:24px}
-      .form-group{flex-direction:column}
-      .btn-row{flex-direction:column}
+      main{padding:40px 16px 35px}h1{font-size:38px;margin:20px 0 30px}
+      .sale{padding:24px}.form-group{flex-direction:column}.restore-btn{width:100%}
+      .keys-table{font-size:12px}.keys-table th, .keys-table td{padding:10px 8px}
     }
   </style>
 </head>
 <body>
   <header class="top">
-    <a href="index.html" class="brand">
+    <a href="#" class="brand">
       <img src="unlockxr.png" alt="Lockxr logo" class="brand-emoji" onerror="this.onerror=null; this.src='lockxr.png';">
       <span>Lockxr</span>
     </a>
     <nav class="nav">
       <a href="accounts.html" class="signin">⇥ &nbsp;Accounts</a>
+      <a href="#admin-panel" class="signin" style="margin-left: 10px;">🔐 Admin</a>
       <div class="premium">
         <img src="unlockxr.png" alt="Lockxr icon" style="width:22px;height:22px;object-fit:contain" onerror="this.onerror=null; this.src='lockxr.png';">
         <span>Premium</span><span class="badge">70% OFF 🎉</span>
@@ -143,20 +149,18 @@
   </header>
 
   <main>
+    <!-- Eyebrow & Title Banner -->
     <div class="eyebrow">
       <img src="unlockxr.png" alt="Lockxr emoji" class="eyebrow-emoji" onerror="this.onerror=null; this.src='lockxr.png';"> 
       Lockxr Premium
     </div>
-
-    <!-- Heading dynamically displays "Unlock {Name}" or "Instant access." -->
-    <h1 id="mainHeading">Instant access.<br>Zero friction.</h1>
-    
-    <p class="lead">
+    <h1 id="mainTitle">Instant access.<br>Zero friction.</h1>
+    <p class="lead" id="mainLead">
       Skip delays, ads, and tasks. Lockxr Premium gives you seamless
       <strong>access to all content</strong> delivered through the Lockxr layer.
     </p>
 
-    <!-- Main Store View -->
+    <!-- USER STORE VIEW -->
     <div id="userStoreView">
       <section class="card">
         <div class="card-title">Choose your duration</div>
@@ -206,77 +210,123 @@
               autocomplete="off" 
               spellcheck="false"
             >
-            <button class="secondary-btn" id="restoreBtn" style="width:auto;">Restore Access</button>
+            <button class="restore-btn" id="restoreBtn">Restore Access</button>
           </div>
           <div id="restoreStatus" class="status-msg"></div>
         </div>
       </section>
     </div>
 
-    <!-- Admin Panel View (Protected) -->
+    <!-- ADMIN LOGIN GUARD CARD -->
+    <div id="adminAuthCard">
+      <section class="card">
+        <div class="card-title">🔐 Admin Authentication</div>
+        <div class="admin-body">
+          <p class="restore-desc">Sign in with administrative credentials to manage Lockxr keys.</p>
+          <div class="form-group" style="flex-direction: column;">
+            <input type="email" id="adminEmail" class="text-input" placeholder="Admin Email">
+            <input type="password" id="adminPassword" class="text-input" placeholder="Password">
+            <button class="action-btn" id="adminLoginBtn">Sign In to Admin Panel</button>
+          </div>
+          <div id="adminLoginStatus" class="status-msg"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ADMIN PANEL VIEW -->
     <div id="adminPanel">
       <section class="card">
         <div class="card-title">
-          <span>🔒 Admin Panel</span>
-          <span id="adminLogoutBtn" class="logout-link" style="display:none;">Sign Out</span>
+          <span>⚙️ Lockxr Admin Dashboard</span>
+          <button id="adminLogoutBtn" class="delete-btn">Logout</button>
         </div>
 
-        <!-- 1. Admin Login Form Guard -->
-        <div id="adminLoginForm" class="admin-body">
-          <p class="restore-desc">Authentication required to access the admin key generator.</p>
-          <div class="form-group" style="flex-direction:column;">
-            <input type="email" id="adminEmail" class="text-input" placeholder="Admin Email" required>
-            <input type="password" id="adminPassword" class="text-input" placeholder="Admin Password" required>
-            <button class="action-btn" id="adminLoginBtn">Log In as Admin</button>
-          </div>
-          <div id="loginStatus" class="status-msg"></div>
+        <div class="admin-nav">
+          <button class="tab-btn active" onclick="switchTab('generatorTab')">Key Generator</button>
+          <button class="tab-btn" onclick="switchTab('keysManagerTab')">All Keys (<span id="keyCountLabel">0</span>)</button>
+          <button class="tab-btn" onclick="switchTab('apiTab')">API Integration</button>
         </div>
 
-        <!-- 2. Authenticated Admin Controls -->
-        <div id="adminDashboard" class="admin-body">
+        <!-- TAB 1: Key Generator -->
+        <div id="generatorTab" class="tab-content active">
+          <p class="restore-desc">Generate single or bulk keys. You can optionally bind keys to a custom unlock page.</p>
           
-          <!-- Key Generator Section -->
-          <h3 style="margin-top:0;">🔑 Key Generator</h3>
-          <p class="restore-desc">Generate single or bulk access keys directly into Realtime Database.</p>
-          
-          <div class="form-group">
-            <select id="keyDuration" class="select-input">
-              <option value="2days">2 Days Access</option>
-              <option value="monthly">Monthly Access</option>
-              <option value="lifetime">Lifetime Access</option>
-            </select>
+          <div class="form-group" style="flex-direction: column;">
+            <label style="color:#a1a1aa; font-size:13px; text-align:left;">Custom Unlock Page Target (e.g. "Exclusive Bundle"):</label>
+            <input type="text" id="targetContentName" class="text-input" placeholder="Optional Name for lockxr.org/c/name">
+            
+            <div style="display: flex; gap: 12px; margin-top: 10px;">
+              <select id="keyDuration" class="select-input">
+                <option value="2days">2 Days Access</option>
+                <option value="monthly">Monthly Access</option>
+                <option value="lifetime">Lifetime Access</option>
+              </select>
+
+              <select id="keyQuantity" class="select-input">
+                <option value="1">1 Key</option>
+                <option value="10">10 Keys (Bulk)</option>
+                <option value="25">25 Keys (Bulk)</option>
+                <option value="50">50 Keys (Bulk)</option>
+              </select>
+            </div>
+
+            <button class="action-btn" id="generateKeyBtn" style="margin-top: 16px;">Generate Keys</button>
           </div>
 
-          <div class="btn-row">
-            <button class="action-btn" id="generateSingleKeyBtn">Generate 1 Key</button>
-            <button class="action-btn" id="generateBulkKeyBtn" style="background:#24c7ff;">Generate 10 Keys</button>
+          <div id="generatedOutputArea" style="display:none; margin-top: 20px;">
+            <div id="customUrlPreview" style="color: #24c7ff; font-size: 14px; margin-bottom: 10px; text-align: left;"></div>
+            <div id="generatedKeysText" class="code-box"></div>
+            <button class="restore-btn" id="downloadTxtBtn" style="margin-top: 12px; width: 100%;">📥 Download Keys as .TXT</button>
           </div>
+          <div id="adminGenStatus" class="status-msg"></div>
+        </div>
 
-          <div id="generatedKeyDisplay" class="generated-key-box" style="display:none;"></div>
-          <button class="secondary-btn" id="downloadKeysBtn" style="display:none; margin-top:12px;">📥 Download Keys (.txt)</button>
-          <div id="adminStatus" class="status-msg"></div>
-
-          <hr style="border:0; border-top:1px solid #2a252d; margin:32px 0;">
-
-          <!-- Dynamic Link Generator Integration (lockxr.org/c/name) -->
-          <h3>🔗 Custom "Unlock {Name}" Link Generator</h3>
-          <p class="restore-desc">Create shareable personalized landing links for specific users or creators.</p>
-          <div class="form-group">
-            <input type="text" id="customNameInput" class="text-input" placeholder="Enter target name (e.g. Alex)">
-            <button class="secondary-btn" id="generateCustomLinkBtn" style="width:auto;">Create Link</button>
+        <!-- TAB 2: Keys Manager -->
+        <div id="keysManagerTab" class="tab-content">
+          <p class="restore-desc">Manage existing keys. Keys only begin their expiration timer once redeemed by a user.</p>
+          <div style="overflow-x: auto;">
+            <table class="keys-table">
+              <thead>
+                <tr>
+                  <th>Key</th>
+                  <th>Duration</th>
+                  <th>Status</th>
+                  <th>Redeemed At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="keysTableBody">
+                <tr><td colspan="5" style="text-align:center; color:#666;">Loading keys...</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div id="customLinkOutput" class="generated-key-box" style="display:none;"></div>
+        </div>
+
+        <!-- TAB 3: Embeddable API Script -->
+        <div id="apiTab" class="tab-content">
+          <p class="restore-desc">Paste this script into third-party sites to check if the current visitor has unlocked Lockxr Premium:</p>
+          <div class="code-box" id="embedCodeBox"></div>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- Firebase Modular Integration Script -->
+  <!-- UNLOCKED CONTENT MODAL POPUP -->
+  <div class="modal-overlay" id="unlockedModal">
+    <div class="modal-card">
+      <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
+      <h2 id="modalTitle">Unlocked Content!</h2>
+      <p id="modalDesc">Your Lockxr Premium license key is verified. You now have active access to all protected content.</p>
+      <button class="action-btn" onclick="closeModal()">Continue Access</button>
+    </div>
+  </div>
+
+  <!-- FIREBASE MODULE & APPLICATION LOGIC -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+    import { getDatabase, ref, get, child, set, remove, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-    import { getDatabase, ref, get, child, set } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBCqUWfs1gbrZm0PjL1R3eHbG6DOWrT3Z0",
@@ -291,194 +341,91 @@
 
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-    const auth = getAuth(app);
     const db = getDatabase(app);
+    const auth = getAuth(app);
 
-    // Global state for generated keys download
-    let latestGeneratedKeys = [];
-
-    /* =========================================================
-       1. ROUTING & DYNAMIC "UNLOCK {NAME}" LINK HANDLING
-       ========================================================= */
-    function handleRouting() {
-      const path = window.location.pathname;
-      const hash = window.location.hash;
-      const params = new URLSearchParams(window.location.search);
-
-      // Admin Panel Route Check
-      const isAdmin = path.includes('/admin-panel') || hash === '#admin-panel';
+    // Global Tab Switching
+    window.switchTab = function(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
       
-      if (isAdmin) {
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    };
+
+    window.closeModal = function() {
+      document.getElementById('unlockedModal').style.display = 'none';
+    };
+
+    // Route Handling (/admin-panel & /c/{name})
+    function handleRouting() {
+      const hash = window.location.hash;
+      const path = window.location.pathname;
+
+      // Handle custom link lockxr.org/c/Name or #c/Name
+      let contentName = null;
+      if (path.includes('/c/')) {
+        contentName = decodeURIComponent(path.split('/c/')[1]);
+      } else if (hash.startsWith('#c/')) {
+        contentName = decodeURIComponent(hash.split('#c/')[1]);
+      }
+
+      if (contentName) {
+        document.getElementById('mainTitle').innerHTML = `Unlock <span style="color:#24c7ff">${contentName}</span>`;
+        document.getElementById('mainLead').innerHTML = `Enter your Lockxr Premium key below to get immediate access to <strong>${contentName}</strong>.`;
+      }
+
+      // Handle Admin Guard Routing
+      const isAdminRoute = path.includes('/admin-panel') || hash === '#admin-panel';
+      if (isAdminRoute) {
         document.getElementById('userStoreView').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
+        
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            document.getElementById('adminAuthCard').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            listenToKeys();
+          } else {
+            document.getElementById('adminAuthCard').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+          }
+        });
       } else {
         document.getElementById('userStoreView').style.display = 'block';
+        document.getElementById('adminAuthCard').style.display = 'none';
         document.getElementById('adminPanel').style.display = 'none';
       }
-
-      // Check for /c/Name or ?c=Name or #c/Name
-      let targetName = null;
-
-      if (path.includes('/c/')) {
-        targetName = path.split('/c/')[1];
-      } else if (hash.includes('#c/')) {
-        targetName = hash.split('#c/')[1];
-      } else if (params.has('c')) {
-        targetName = params.get('c');
-      }
-
-      if (targetName) {
-        const cleanName = decodeURIComponent(targetName).trim();
-        if (cleanName.length > 0) {
-          document.getElementById('mainHeading').innerHTML = `Unlock <span class="highlight-name">${escapeHtml(cleanName)}</span>`;
-        }
-      }
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     window.addEventListener('load', handleRouting);
     window.addEventListener('hashchange', handleRouting);
 
-    /* =========================================================
-       2. ADMIN AUTHENTICATION GUARD
-       ========================================================= */
-    const adminLoginForm = document.getElementById('adminLoginForm');
-    const adminDashboard = document.getElementById('adminDashboard');
-    const adminLogoutBtn = document.getElementById('adminLogoutBtn');
-    const loginStatus = document.getElementById('loginStatus');
+    // Admin Authentication Handler
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminLoginStatus = document.getElementById('adminLoginStatus');
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Authenticated: Show Dashboard, Hide Login Form
-        adminLoginForm.style.display = 'none';
-        adminDashboard.style.display = 'block';
-        adminLogoutBtn.style.display = 'inline';
-      } else {
-        // Unauthenticated: Show Login Guard
-        adminLoginForm.style.display = 'block';
-        adminDashboard.style.display = 'none';
-        adminLogoutBtn.style.display = 'none';
-      }
-    });
-
-    document.getElementById('adminLoginBtn').addEventListener('click', async () => {
+    adminLoginBtn.addEventListener('click', async () => {
       const email = document.getElementById('adminEmail').value.trim();
       const password = document.getElementById('adminPassword').value;
 
-      loginStatus.className = 'status-msg';
-      loginStatus.style.display = 'block';
-      loginStatus.style.color = '#92929b';
-      loginStatus.textContent = 'Authenticating...';
+      adminLoginStatus.className = 'status-msg';
+      adminLoginStatus.style.display = 'block';
+      adminLoginStatus.style.color = '#92929b';
+      adminLoginStatus.textContent = 'Authenticating...';
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        loginStatus.className = 'status-msg success';
-        loginStatus.textContent = 'Login successful!';
+        adminLoginStatus.className = 'status-msg success';
+        adminLoginStatus.textContent = 'Login successful!';
       } catch (err) {
-        console.error(err);
-        loginStatus.className = 'status-msg error';
-        loginStatus.textContent = 'Invalid admin credentials.';
+        adminLoginStatus.className = 'status-msg error';
+        adminLoginStatus.textContent = 'Authentication failed: ' + err.message;
       }
     });
 
-    adminLogoutBtn.addEventListener('click', () => {
-      signOut(auth);
-    });
+    document.getElementById('adminLogoutBtn').addEventListener('click', () => signOut(auth));
 
-    /* =========================================================
-       3. KEY GENERATOR (SINGLE, BULK & DOWNLOAD)
-       ========================================================= */
-    function generate16CharKey() {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      let result = '';
-      for (let i = 0; i < 16; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result.match(/.{1,4}/g).join('-');
-    }
-
-    async function processKeyGeneration(count) {
-      const duration = document.getElementById('keyDuration').value;
-      const adminStatus = document.getElementById('adminStatus');
-      const displayBox = document.getElementById('generatedKeyDisplay');
-      const downloadBtn = document.getElementById('downloadKeysBtn');
-
-      adminStatus.className = 'status-msg';
-      adminStatus.style.display = 'block';
-      adminStatus.style.color = '#92929b';
-      adminStatus.textContent = `Generating ${count} key(s)...`;
-
-      const generatedList = [];
-
-      try {
-        for (let i = 0; i < count; i++) {
-          const newKey = generate16CharKey();
-          await set(ref(db, `keys/${newKey}`), {
-            active: true,
-            duration: duration,
-            createdAt: new Date().toISOString(),
-            createdOnDomain: window.location.hostname
-          });
-          generatedList.push(newKey);
-        }
-
-        latestGeneratedKeys = generatedList;
-
-        displayBox.style.display = 'block';
-        displayBox.textContent = generatedList.join('\n');
-
-        downloadBtn.style.display = 'block';
-        adminStatus.className = 'status-msg success';
-        adminStatus.textContent = `Successfully saved ${count} key(s) (${duration.toUpperCase()}) to Database!`;
-      } catch (err) {
-        console.error(err);
-        adminStatus.className = 'status-msg error';
-        adminStatus.textContent = 'Failed to generate keys. Make sure you are logged in with write permissions.';
-      }
-    }
-
-    document.getElementById('generateSingleKeyBtn').addEventListener('click', () => processKeyGeneration(1));
-    document.getElementById('generateBulkKeyBtn').addEventListener('click', () => processKeyGeneration(10));
-
-    // Download .txt file
-    document.getElementById('downloadKeysBtn').addEventListener('click', () => {
-      if (latestGeneratedKeys.length === 0) return;
-      
-      const fileContent = latestGeneratedKeys.join('\n');
-      const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = `lockxr-keys-${Date.now()}.txt`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-
-    /* =========================================================
-       4. CUSTOM "UNLOCK {NAME}" LINK CREATOR
-       ========================================================= */
-    document.getElementById('generateCustomLinkBtn').addEventListener('click', () => {
-      const nameInput = document.getElementById('customNameInput').value.trim();
-      const outputBox = document.getElementById('customLinkOutput');
-
-      if (!nameInput) {
-        alert('Please enter a target name.');
-        return;
-      }
-
-      const encodedName = encodeURIComponent(nameInput);
-      const generatedUrl = `https://lockxr.org/c/${encodedName}`;
-
-      outputBox.style.display = 'block';
-      outputBox.textContent = generatedUrl;
-    });
-
-    /* =========================================================
-       5. RESTORE PURCHASE KEY VERIFICATION
-       ========================================================= */
+    // Restore Key Format Auto-Hyphen
     const restoreKeyInput = document.getElementById('restoreKey');
     restoreKeyInput.addEventListener('input', (e) => {
       let val = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
@@ -487,6 +434,7 @@
       e.target.value = parts ? parts.join('-') : val;
     });
 
+    // Key Redemption with Start-on-Redeem Expiration
     const restoreBtn = document.getElementById('restoreBtn');
     const restoreStatus = document.getElementById('restoreStatus');
 
@@ -503,36 +451,240 @@
       restoreStatus.className = 'status-msg';
       restoreStatus.style.display = 'block';
       restoreStatus.style.color = '#92929b';
-      restoreStatus.textContent = 'Verifying key against database...';
+      restoreStatus.textContent = 'Verifying key...';
 
       try {
         const dbRef = ref(db);
         const snapshot = await get(child(dbRef, `keys/${formattedKey}`));
 
-        if (snapshot.exists()) {
-          const keyData = snapshot.val();
-          if (keyData.active) {
-            restoreStatus.className = 'status-msg success';
-            restoreStatus.textContent = `Access Restored! Plan: ${keyData.duration.toUpperCase()}. Welcome to Lockxr Premium.`;
-            localStorage.setItem('lockxr_premium_key', formattedKey);
-          } else {
+        if (!snapshot.exists()) {
+          restoreStatus.className = 'status-msg error';
+          restoreStatus.textContent = 'Invalid key. Please check and try again.';
+          return;
+        }
+
+        const keyData = snapshot.val();
+        const now = Date.now();
+
+        if (!keyData.active) {
+          restoreStatus.className = 'status-msg error';
+          restoreStatus.textContent = 'This key has been revoked.';
+          return;
+        }
+
+        // Check if key is already redeemed and expired
+        if (keyData.redeemed) {
+          if (keyData.expiresAt && now > keyData.expiresAt) {
             restoreStatus.className = 'status-msg error';
-            restoreStatus.textContent = 'This key has already been revoked or deactivated.';
+            restoreStatus.textContent = 'This key duration has expired.';
+            return;
           }
         } else {
-          restoreStatus.className = 'status-msg error';
-          restoreStatus.textContent = 'Invalid key. Please verify and try again.';
+          // First time redeeming -> Calculate expiration dynamically
+          let durationMs = 0;
+          if (keyData.duration === '2days') durationMs = 2 * 24 * 60 * 60 * 1000;
+          if (keyData.duration === 'monthly') durationMs = 30 * 24 * 60 * 60 * 1000;
+
+          const expiresAt = durationMs > 0 ? now + durationMs : null;
+
+          await set(ref(db, `keys/${formattedKey}`), {
+            ...keyData,
+            redeemed: true,
+            redeemedAt: now,
+            expiresAt: expiresAt
+          });
         }
+
+        // Store Key in Local Storage
+        localStorage.setItem('lockxr_premium_key', formattedKey);
+
+        restoreStatus.className = 'status-msg success';
+        restoreStatus.textContent = 'Access verified!';
+
+        // Trigger Pop-up
+        if (keyData.targetContent) {
+          document.getElementById('modalTitle').textContent = `Unlocked ${keyData.targetContent}!`;
+        }
+        document.getElementById('unlockedModal').style.display = 'flex';
+
       } catch (err) {
         console.error(err);
         restoreStatus.className = 'status-msg error';
-        restoreStatus.textContent = 'Connection error verifying key. Try again later.';
+        restoreStatus.textContent = 'Server error checking key. Try again later.';
       }
     });
+
+    // Key Generator Helper
+    function generate16CharKey() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < 16; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result.match(/.{1,4}/g).join('-');
+    }
+
+    // Bulk Key Generation & TXT Downloader
+    const generateKeyBtn = document.getElementById('generateKeyBtn');
+    const generatedOutputArea = document.getElementById('generatedOutputArea');
+    const generatedKeysText = document.getElementById('generatedKeysText');
+    const downloadTxtBtn = document.getElementById('downloadTxtBtn');
+    const adminGenStatus = document.getElementById('adminGenStatus');
+    const customUrlPreview = document.getElementById('customUrlPreview');
+
+    let lastGeneratedList = [];
+
+    generateKeyBtn.addEventListener('click', async () => {
+      const duration = document.getElementById('keyDuration').value;
+      const quantity = parseInt(document.getElementById('keyQuantity').value, 10);
+      const targetContent = document.getElementById('targetContentName').value.trim();
+
+      lastGeneratedList = [];
+      let updates = {};
+
+      for (let i = 0; i < quantity; i++) {
+        const key = generate16CharKey();
+        lastGeneratedList.push(key);
+
+        updates[`keys/${key}`] = {
+          active: true,
+          duration: duration,
+          redeemed: false,
+          redeemedAt: null,
+          expiresAt: null,
+          createdAt: new Date().toISOString(),
+          targetContent: targetContent || null
+        };
+      }
+
+      try {
+        for (let path in updates) {
+          await set(ref(db, path), updates[path]);
+        }
+
+        generatedOutputArea.style.display = 'block';
+        generatedKeysText.textContent = lastGeneratedList.join('\n');
+
+        if (targetContent) {
+          const formattedUrl = `${window.location.origin}/#c/${encodeURIComponent(targetContent)}`;
+          customUrlPreview.innerHTML = `Linked URL: <a href="${formattedUrl}" target="_blank" style="color:#48a7ff">${formattedUrl}</a>`;
+        } else {
+          customUrlPreview.innerHTML = '';
+        }
+
+        adminGenStatus.className = 'status-msg success';
+        adminGenStatus.textContent = `Successfully generated and saved ${quantity} key(s)!`;
+      } catch (err) {
+        adminGenStatus.className = 'status-msg error';
+        adminGenStatus.textContent = 'Failed to generate keys: ' + err.message;
+      }
+    });
+
+    downloadTxtBtn.addEventListener('click', () => {
+      if (lastGeneratedList.length === 0) return;
+      const blob = new Blob([lastGeneratedList.join('\n')], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lockxr_keys_${Date.now()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Realtime Keys Manager Table Listener
+    function listenToKeys() {
+      const keysRef = ref(db, 'keys');
+      onValue(keysRef, (snapshot) => {
+        const tbody = document.getElementById('keysTableBody');
+        tbody.innerHTML = '';
+
+        if (!snapshot.exists()) {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#666;">No keys generated yet.</td></tr>';
+          document.getElementById('keyCountLabel').textContent = '0';
+          return;
+        }
+
+        const data = snapshot.val();
+        const keysList = Object.keys(data);
+        document.getElementById('keyCountLabel').textContent = keysList.length;
+
+        keysList.reverse().forEach(key => {
+          const item = data[key];
+          const tr = document.createElement('tr');
+
+          let statusBadge = '<span style="color:#eab308">Unredeemed</span>';
+          if (item.redeemed) {
+            if (item.expiresAt && Date.now() > item.expiresAt) {
+              statusBadge = '<span style="color:#f87171">Expired</span>';
+            } else {
+              statusBadge = '<span style="color:#4ade80">Active</span>';
+            }
+          }
+
+          const redeemedDate = item.redeemedAt ? new Date(item.redeemedAt).toLocaleDateString() : 'N/A';
+
+          tr.innerHTML = `
+            <td style="color:#24c7ff">${key}</td>
+            <td>${item.duration}</td>
+            <td>${statusBadge}</td>
+            <td style="color:#92929b">${redeemedDate}</td>
+            <td><button class="delete-btn" onclick="deleteKey('${key}')">Delete</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    // Individual Key Deletion
+    window.deleteKey = async function(key) {
+      if (confirm(`Are you sure you want to delete key: ${key}?`)) {
+        await remove(ref(db, `keys/${key}`));
+      }
+    };
+
+    // Embeddable API Snippet Content
+    document.getElementById('embedCodeBox').textContent = 
+`<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCqUWfs1gbrZm0PjL1R3eHbG6DOWrT3Z0",
+    databaseURL: "https://lockxr-e0bf7-default-rtdb.firebaseio.com",
+    projectId: "lockxr-e0bf7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  async function isLockxrPremiumUser() {
+    const key = localStorage.getItem('lockxr_premium_key');
+    if (!key) return false;
+
+    try {
+      const snapshot = await get(child(ref(db), \`keys/\${key}\`));
+      if (!snapshot.exists()) return false;
+      const data = snapshot.val();
+      if (!data.active || !data.redeemed) return false;
+      if (data.expiresAt && Date.now() > data.expiresAt) return false;
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // Example usage on third-party site:
+  isLockxrPremiumUser().then(hasAccess => {
+    if (hasAccess) {
+      console.log("User is subscribed to Lockxr Premium!");
+      // Show premium content here
+    }
+  });
+<\/script>`;
   </script>
 
   <script>
-    // Countdown Timer
+    // Timer Countdown
     const end = Date.now() + 2 * 60 * 60 * 1000;
     function tick(){
       let n = Math.max(0, end - Date.now());
@@ -545,7 +697,7 @@
     }
     tick(); setInterval(tick, 1000);
 
-    // Plan Switcher
+    // Store Plan Selector
     const plans = document.querySelectorAll('.plan');
     let selectedPlan = 'plan-2days';
 
@@ -561,11 +713,11 @@
     const checkoutBtn = document.getElementById('checkoutBtn');
     checkoutBtn.addEventListener('click', () => {
       let currentProductId = 901590;
-      let currentVariantId = 1765869; // 2 days
+      let currentVariantId = 1765869; // 2 Days variant ID
       
       if (selectedPlan === 'plan-monthly') {
         currentProductId = 901590;
-        currentVariantId = 1765599; // Monthly
+        currentVariantId = 1765599; // Monthly variant ID
       }
 
       if (typeof sellAuth !== 'undefined') {
