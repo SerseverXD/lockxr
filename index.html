@@ -37,7 +37,7 @@
     .rounded-box {
       display: inline-block;
       border: 2px solid #48a7ff;
-      border-radius: 12px; /* Rounded corners */
+      border-radius: 12px;
       padding: 4px 14px;
       background: #111118;
       color: #ffffff;
@@ -83,6 +83,29 @@
     .plan.alt{border:2px solid #222;background:#080808}
     .plan.alt .sub{color:#777}
     
+    /* CHECKOUT BUTTON WITH BLUE "FASTEST" TAG */
+    .checkout-btn-wrapper {
+      position: relative;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .tag-fastest {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: #48a7ff;
+      color: #ffffff;
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border: 2px solid #09090b;
+      box-shadow: 0 4px 12px rgba(72,167,255,0.4);
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .checkout-btn, .action-btn {
       width: 100%; padding: 18px; border-radius: 16px;
       background: #48a7ff; color: #fff; font-size: 17px; font-weight: 700;
@@ -193,9 +216,16 @@
 
     .unlocked-box {
       background: linear-gradient(145deg,#171319,#09090b); border: 1px solid #48a7ff;
-      border-radius: 28px; padding: 40px; max-width: 440px; width: 100%; text-align: center;
+      border-radius: 28px; padding: 40px; max-width: 460px; width: 100%; text-align: center;
       box-shadow: 0 0 50px rgba(72,167,255,0.25);
     }
+
+    /* Checkbox Styling */
+    .checkbox-container {
+      display: flex; align-items: center; gap: 10px; margin: 12px 0 18px;
+      user-select: none; cursor: pointer;
+    }
+    .checkbox-container input { width: 18px; height: 18px; accent-color: #48a7ff; cursor: pointer; }
 
     @media(max-width:600px){
       .top{padding:0 16px;height:80px}.brand{font-size:0}.brand img, .brand-emoji{width:32px;height:32px}
@@ -268,7 +298,11 @@
             <div class="price">$4<sup>.99</sup><small>/monthly</small></div>
           </div>
           
-          <button class="checkout-btn" id="checkoutBtn">Continue to Payment</button>
+          <!-- CONTINUE TO PAYMENT BUTTON WITH BLUE "FASTEST" TAG -->
+          <div class="checkout-btn-wrapper">
+            <div class="tag-fastest">Fastest</div>
+            <button class="checkout-btn" id="checkoutBtn">Continue to Payment</button>
+          </div>
         </div>
       </section>
 
@@ -370,22 +404,35 @@
           </div>
         </div>
 
-        <!-- TAB 2: LINK GENERATOR & REMOVER (lockxr.org/u/{name}) -->
+        <!-- TAB 2: LINK GENERATOR & CALLBACK MANAGER -->
         <div id="tab-linkgen" class="admin-tab-content card" style="display:none;">
           <div class="card-title">Custom Content Link Generator</div>
           <div class="admin-body">
             <p class="restore-desc">
-              Generate links in the format <code>lockxr.org/u/{name}</code>. Visiting this link will display:
-              <br><em>"Access to {name} immediately — skip delays, ads, and tasks. Lockxr Premium gives you seamless access to this and all other content delivered through the Lockxr layer."</em>
+              Generate links in the format <code>lockxr.org/u/{name}</code>. You can choose whether to generate an attached token callback URL for users who already have premium access.
             </p>
+            
             <div class="form-group">
               <input type="text" id="linkNameInput" class="text-input" placeholder="Enter content name (e.g. HubScript-v2)">
-              <button class="action-btn" id="generateLinkBtn" style="flex:0 0 auto; width:auto;">Generate Link</button>
             </div>
+
+            <!-- OPTION TO GENERATE CALLBACK WITH TOKEN -->
+            <label class="checkbox-container">
+              <input type="checkbox" id="enableCallbackCheck">
+              <span style="font-size:14px; color:#ddd;">Generate callback URL with token (e.g. <code>lockxr.org/callback/xxx-xxx-xxx-1359</code>)</span>
+            </label>
+
+            <button class="action-btn" id="generateLinkBtn" style="margin-top:8px;">Generate Link</button>
 
             <div id="generatedLinkOutput" style="display:none; margin-top:20px;">
               <label style="font-size:13px; font-weight:600; color:#aaa;">Generated URL:</label>
               <code class="snippet-box" id="linkOutputBox"></code>
+              
+              <div id="callbackLinkContainer" style="display:none; margin-top:12px;">
+                <label style="font-size:13px; font-weight:600; color:#48a7ff;">Associated Callback URL:</label>
+                <code class="snippet-box" id="callbackOutputBox"></code>
+              </div>
+
               <button class="sec-btn" id="copyGeneratedLinkBtn" style="margin-top:12px; width:100%;">📋 Copy Generated Link</button>
             </div>
 
@@ -401,7 +448,7 @@
                 <tr>
                   <th>Content Name</th>
                   <th>Full URL</th>
-                  <th>Created At</th>
+                  <th>Callback Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -459,7 +506,6 @@
       <p class="auth-subtitle">Get access to your account or sign up for one by using a method below.</p>
 
       <div class="auth-bar">
-        <!-- Key / Password Login Button -->
         <button class="auth-icon-btn" id="keyAuthBtn" title="Password Login">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="7.5" cy="15.5" r="4.5"/>
@@ -467,7 +513,6 @@
           </svg>
         </button>
 
-        <!-- Middle Email Pill Field -->
         <div class="email-pill-container">
           <input type="email" id="authEmailInput" class="email-pill-input" placeholder="Email" autocomplete="off">
           <button class="submit-arrow-btn" id="emailSubmitBtn" title="Continue">
@@ -478,7 +523,6 @@
           </button>
         </div>
 
-        <!-- Google OAuth Button -->
         <button class="auth-icon-btn" id="googleAuthBtn" title="Sign in with Google">
           <svg width="20" height="20" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -489,7 +533,6 @@
         </button>
       </div>
 
-      <!-- Password Expansion Step -->
       <div id="passwordStep" class="password-step">
         <input type="password" id="authPasswordInput" placeholder="Enter or set your password">
         <button class="action-btn" id="confirmPasswordBtn">Authenticate & Save Premium</button>
@@ -508,6 +551,25 @@
         Your account is now linked to <strong>Lockxr Premium</strong>.
       </p>
       <button class="action-btn" id="closeModalBtn">Continue to Content</button>
+    </div>
+  </div>
+
+  <!-- ALREADY SUBSCRIBED / CALLBACK POPUP MODAL -->
+  <div id="callbackModal" class="modal-overlay">
+    <div class="unlocked-box">
+      <div style="font-size:48px; margin-bottom:12px;">⚡</div>
+      <h3 style="font-size:26px; margin:0 0 12px; color:#fff;">Already Subscribed!</h3>
+      <p style="color:#92929b; font-size:15px; margin-bottom:20px; line-height:1.6;" id="callbackModalText">
+        You already have active Premium access to this content!
+      </p>
+
+      <div id="callbackUrlContainer" style="display:none; margin-bottom:24px;">
+        <label style="font-size:12px; color:#a1a1aa; display:block; margin-bottom:6px;">Your One-Time Callback Token URL:</label>
+        <code id="callbackTokenDisplay" class="snippet-box" style="margin-top:0; padding:12px; font-size:12px; color:#48a7ff;"></code>
+        <small style="color:#f87171; font-size:11px; display:block; margin-top:8px;">⚠️ Note: This session page deletes automatically if refreshed!</small>
+      </div>
+
+      <button class="action-btn" id="proceedCallbackBtn">Proceed to Content</button>
     </div>
   </div>
 
@@ -539,16 +601,53 @@
     const googleProvider = new GoogleAuthProvider();
 
     let pendingKeyToRedeem = null;
+    let currentContentName = null;
 
     function escapeHtml(str) {
       return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
-    // Dynamic Route / Link Handler for lockxr.org/u/{name} or ?u={name} or #u/{name}
-    function checkRoute() {
+    // Helper to generate callback token (e.g., lockxr.org/callback/xxx-xxx-xxx-1359)
+    function generateCallbackToken() {
+      const seg = () => Math.random().toString(36).substring(2, 5);
+      const num = Math.floor(1000 + Math.random() * 9000);
+      return `${seg()}-${seg()}-${seg()}-${num}`;
+    }
+
+    // Dynamic Route / Link & Callback Handler
+    async function checkRoute() {
       const path = window.location.pathname;
       const searchParams = new URLSearchParams(window.location.search);
       const hash = window.location.hash;
+
+      // Handle Callback Route with Refresh-Deletion Check (e.g. lockxr.org/callback/{token})
+      let callbackToken = null;
+      if (path.startsWith('/callback/')) {
+        callbackToken = path.substring(10);
+      } else if (hash.startsWith('#callback/')) {
+        callbackToken = hash.substring(10);
+      }
+
+      if (callbackToken) {
+        // "Page deletes when u refresh!"
+        if (sessionStorage.getItem(`visited_cb_${callbackToken}`)) {
+          // Clear URL parameter and reset view on refresh
+          window.history.replaceState({}, document.title, window.location.origin);
+          alert('This one-time callback session has expired and was removed on refresh.');
+          location.reload();
+          return;
+        } else {
+          sessionStorage.setItem(`visited_cb_${callbackToken}`, 'true');
+          document.getElementById('userStoreView').style.display = 'block';
+          document.getElementById('adminPanel').style.display = 'none';
+          
+          document.getElementById('callbackModalText').textContent = 'Valid one-time callback token verified!';
+          document.getElementById('callbackUrlContainer').style.display = 'block';
+          document.getElementById('callbackTokenDisplay').textContent = `https://lockxr.org/callback/${callbackToken}`;
+          document.getElementById('callbackModal').classList.add('active');
+          return;
+        }
+      }
 
       let contentName = null;
 
@@ -560,6 +659,7 @@
         contentName = decodeURIComponent(hash.substring(3));
       }
 
+      currentContentName = contentName;
       const isAdminRoute = path.includes('/admin-panel') || hash === '#admin-panel';
 
       if (isAdminRoute) {
@@ -579,13 +679,54 @@
     window.addEventListener('load', checkRoute);
     window.addEventListener('hashchange', checkRoute);
 
-    // Auth state observer for Admin and Header
+    // Check if logged in user already has active premium when visiting content links
+    async function checkUserPremiumAccess(user) {
+      if (!user || !currentContentName) return;
+
+      try {
+        const userSnap = await get(child(ref(db), `users/${user.uid}`));
+        if (userSnap.exists()) {
+          const userData = userSnap.val();
+          const isPremiumActive = userData.premiumStatus === 'active' && new Date() < new Date(userData.expiresAt);
+
+          if (isPremiumActive) {
+            // Check link configuration in database for callback
+            const linkId = encodeURIComponent(currentContentName).replace(/\./g, '_');
+            const linkSnap = await get(child(ref(db), `links/${linkId}`));
+
+            document.getElementById('callbackModalText').innerHTML = `You have active Premium access to <span class="rounded-box">${escapeHtml(currentContentName)}</span>!`;
+
+            if (linkSnap.exists() && linkSnap.val().hasCallback && linkSnap.val().callbackToken) {
+              const token = linkSnap.val().callbackToken;
+              const callbackUrl = `https://lockxr.org/callback/${token}`;
+              
+              document.getElementById('callbackUrlContainer').style.display = 'block';
+              document.getElementById('callbackTokenDisplay').textContent = callbackUrl;
+              
+              document.getElementById('proceedCallbackBtn').onclick = () => {
+                window.location.href = callbackUrl;
+              };
+            } else {
+              document.getElementById('callbackUrlContainer').style.display = 'none';
+              document.getElementById('proceedCallbackBtn').onclick = () => {
+                document.getElementById('callbackModal').classList.remove('active');
+              };
+            }
+
+            document.getElementById('callbackModal').classList.add('active');
+          }
+        }
+      } catch (e) {
+        console.error('Premium check error', e);
+      }
+    }
+
+    // Auth state observer
     onAuthStateChanged(auth, async (user) => {
       const userBtn = document.getElementById('userAccountBtn');
       if (user) {
         userBtn.textContent = `👤 ${user.email ? user.email.split('@')[0] : 'User'}`;
 
-        // Verify if user is admin when accessing admin panel
         const snap = await get(child(ref(db), `admins/${user.uid}`));
         if (snap.exists() && snap.val() === true) {
           document.getElementById('adminAuthGuard').style.display = 'none';
@@ -595,6 +736,8 @@
           document.getElementById('adminAuthGuard').style.display = 'block';
           document.getElementById('adminContent').style.display = 'none';
         }
+
+        checkUserPremiumAccess(user);
       } else {
         userBtn.textContent = '⇥  Sign in';
         document.getElementById('adminAuthGuard').style.display = 'block';
@@ -615,7 +758,7 @@
       e.target.value = parts ? parts.join('-') : val;
     });
 
-    // Step 1: Key verification
+    // Restore purchase handler
     const restoreBtn = document.getElementById('restoreBtn');
     const restoreStatus = document.getElementById('restoreStatus');
     const authModal = document.getElementById('authModal');
@@ -681,7 +824,6 @@
       passwordStep.classList.toggle('active');
     });
 
-    // Google Sign-In Handler
     document.getElementById('googleAuthBtn').addEventListener('click', async () => {
       try {
         const res = await signInWithPopup(auth, googleProvider);
@@ -695,7 +837,6 @@
       }
     });
 
-    // Email/Password Submit Handler
     document.getElementById('confirmPasswordBtn').addEventListener('click', async () => {
       const email = emailInput.value.trim();
       const pass = passwordInput.value;
@@ -782,7 +923,6 @@
       }
     });
 
-    // ADMIN GOOGLE LOGIN
     document.getElementById('adminGoogleLoginBtn').addEventListener('click', async () => {
       try {
         const res = await signInWithPopup(auth, googleProvider);
@@ -815,20 +955,34 @@
       });
     });
 
-    // LINK GENERATOR & SAVER LOGIC
+    // LINK GENERATOR WITH CALLBACK CONTROL
     document.getElementById('generateLinkBtn').addEventListener('click', async () => {
       const name = document.getElementById('linkNameInput').value.trim();
+      const enableCallback = document.getElementById('enableCallbackCheck').checked;
       if (!name) return;
 
       const formattedUrl = `https://lockxr.org/u/${encodeURIComponent(name)}`;
       const linkId = encodeURIComponent(name).replace(/\./g, '_');
 
-      // Save to Firebase Database
-      await set(ref(db, `links/${linkId}`), {
+      const payload = {
         name: name,
         url: formattedUrl,
+        hasCallback: enableCallback,
         createdAt: new Date().toISOString()
-      });
+      };
+
+      if (enableCallback) {
+        const token = generateCallbackToken();
+        payload.callbackToken = token;
+        payload.callbackUrl = `https://lockxr.org/callback/${token}`;
+
+        document.getElementById('callbackOutputBox').textContent = payload.callbackUrl;
+        document.getElementById('callbackLinkContainer').style.display = 'block';
+      } else {
+        document.getElementById('callbackLinkContainer').style.display = 'none';
+      }
+
+      await set(ref(db, `links/${linkId}`), payload);
 
       document.getElementById('linkOutputBox').textContent = formattedUrl;
       document.getElementById('generatedLinkOutput').style.display = 'block';
@@ -853,11 +1007,15 @@
       tbody.innerHTML = '';
       Object.keys(data).forEach(id => {
         const item = data[id];
+        const callbackStatus = item.hasCallback 
+          ? `<span style="color:#4ade80; font-weight:600;">Yes</span> <code style="font-size:11px; color:#aaa;">(${item.callbackToken})</code>` 
+          : `<span style="color:#6b7280;">No Callback</span>`;
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td style="font-weight:600; color:#fff;">${escapeHtml(item.name)}</td>
           <td><code style="color:#38bdf8;">${escapeHtml(item.url)}</code></td>
-          <td>${item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
+          <td>${callbackStatus}</td>
           <td><button class="del-btn remove-link-btn" data-id="${id}">Remove Link</button></td>
         `;
         tbody.appendChild(tr);
