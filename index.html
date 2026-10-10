@@ -495,7 +495,7 @@
           <div class="card-title">External Website Integration Script</div>
           <div class="admin-body">
             <p class="restore-desc">
-              Embed this snippet on external sites to verify if the visiting user has unlocked Lockxr Premium with their account.
+              Embed this listener script on your parent website to receive the <code>postMessage</code> notification whenever the user finishes on Lockxr:
             </p>
             <code class="snippet-box" id="apiSnippetCode"></code>
             <button class="sec-btn" id="copySnippetBtn" style="margin-top:14px; width:100%;">📋 Copy Script Snippet</button>
@@ -509,10 +509,10 @@
   <div id="callbackView">
     <div id="callbackLoadingState" style="display:flex; flex-direction:column; align-items:center;">
       <div class="spinner"></div>
-      <p style="font-size:15px; color:#a1a1aa; margin:0; font-weight:500;">Access granted. Redirecting to content...</p>
+      <p style="font-size:15px; color:#a1a1aa; margin:0; font-weight:500;">Access granted. Verifying callback...</p>
     </div>
     <div id="callbackErrorState" style="display:none; text-align:center;">
-      <div style="font-size:42px; margin-bottom:12px;">⚠️️</div>
+      <div style="font-size:42px; margin-bottom:12px;">⚠</div>
       <h3 style="margin:0 0 8px; font-size:24px; color:#fff;">Session Expired or Deleted</h3>
       <p style="color:#82828b; font-size:15px; max-width:320px; line-height:1.5; margin:0 auto;">
         This token page was automatically deleted upon refresh. Please visit the link again to re-authenticate.
@@ -678,7 +678,7 @@
         const expiresAt = new Date(userSnap.val().expiresAt);
         if (new Date() >= expiresAt) return;
 
-        // User is subscribed! Check link settings in DB
+        // User is subscribed: Check link settings in DB
         const linkId = encodeURIComponent(contentName).replace(/\./g, '_');
         const linkSnap = await get(child(ref(db), `links/${linkId}`));
 
@@ -692,7 +692,6 @@
         }
 
         if (callbackEnabled) {
-          // Show popup alerting user
           document.getElementById('unlockModalTitle').textContent = 'Premium Access Verified!';
           document.getElementById('unlockModalText').innerHTML = `You have full access to <strong>${escapeHtml(contentName)}</strong>. Redirecting to callback...`;
           document.getElementById('unlockModal').classList.add('active');
@@ -714,7 +713,7 @@
       }
     }
 
-    // HANDLE CALLBACK PAGE LOADER & SELF-DELETION ON REFRESH
+    // HANDLE CALLBACK PAGE LOADER, POSTMESSAGE & SELF-DELETION ON REFRESH
     function handleCallbackTokenView(token) {
       const loadingEl = document.getElementById('callbackLoadingState');
       const errorEl = document.getElementById('callbackErrorState');
@@ -728,17 +727,35 @@
         return;
       }
 
-      // Immediately delete/invalidate token so refreshing deletes the page!
+      // Immediately delete/invalidate token so refreshing deletes the page
       sessionStorage.removeItem(`lockxr_token_${token}`);
 
       const data = JSON.parse(storedTokenData);
       loadingEl.style.display = 'flex';
       errorEl.style.display = 'none';
 
+      // POSTMESSAGE RESPONSE CODE
+      if (window.parent !== window) {
+        // Tells the parent website (your site) that the task is done and passes the URL
+        window.parent.postMessage({ 
+          status: 'success', 
+          callbackUrl: window.location.href 
+        }, '*');
+      }
+
+      // Also notify window.opener if opened via window.open() popup
+      if (window.opener) {
+        window.opener.postMessage({ 
+          status: 'success', 
+          callbackUrl: window.location.href 
+        }, '*');
+      }
+
+      // Redirect if destination target URL exists
       if (data.targetUrl && data.targetUrl.startsWith('http')) {
         setTimeout(() => {
           window.location.href = data.targetUrl;
-        }, 1500);
+        }, 1200);
       }
     }
 
@@ -751,7 +768,6 @@
       if (user) {
         userBtn.textContent = `👤 ${user.email ? user.email.split('@')[0] : 'User'}`;
 
-        // Verify if user is admin when accessing admin panel
         const snap = await get(child(ref(db), `admins/${user.uid}`));
         if (snap.exists() && snap.val() === true) {
           document.getElementById('adminAuthGuard').style.display = 'none';
@@ -995,7 +1011,6 @@
       const formattedUrl = `https://lockxr.org/u/${encodeURIComponent(name)}`;
       const linkId = encodeURIComponent(name).replace(/\./g, '_');
 
-      // Save to Realtime Database
       await set(ref(db, `links/${linkId}`), {
         name: name,
         url: formattedUrl,
@@ -1110,21 +1125,18 @@
 
     document.getElementById('refreshKeysBtn').addEventListener('click', loadKeysTable);
 
-    // Code Snippet Box
-    const snippetCode = `<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-
-  const app = initializeApp({ apiKey: "AIzaSyBCqUWfs1gbrZm0PjL1R3eHbG6DOWrT3Z0", databaseURL: "https://lockxr-e0bf7-default-rtdb.firebaseio.com" });
-  const db = getDatabase(app);
-
-  export async function checkLockxrPremium(uid) {
-    const snap = await get(child(ref(db), \`users/\${uid}\`));
-    if (snap.exists() && snap.val().premiumStatus === 'active') {
-      return new Date() < new Date(snap.val().expiresAt);
+    // Parent Website Listener Code Snippet in Admin Panel
+    const snippetCode = `<!-- Listen for Lockxr callback events on your parent website -->
+<script>
+  window.addEventListener('message', (event) => {
+    // Check if the message is from the Lockxr task completion
+    if (event.data && event.data.status === 'success') {
+      console.log('✅ Lockxr task finished! Callback URL:', event.data.callbackUrl);
+      
+      // Example: unlock your site content, close iframe or modal
+      // unlockMyContent();
     }
-    return false;
-  }
+  });
 <\/script>`;
     document.getElementById('apiSnippetCode').textContent = snippetCode;
   </script>
